@@ -14,6 +14,14 @@ public extension CAN {
         /// Receiving timestamp. Not used when sending frames.
         public let timestamp: Double
 
+        /// Create a CAN frame
+        public init(id: UInt32, dlc: Int, unpadded data: [UInt8], timestamp: Double = 0) {
+            self.id = id
+            self.dlc = dlc
+            self.data = data
+            self.timestamp = timestamp
+        }
+
         /// Create a padded CAN frame from data. DLC is hardcoded to 8.
         public init(id: UInt32, padded data: [UInt8], pad: UInt8 = 0xAA, timestamp: Double = 0) {
             self.id = id
