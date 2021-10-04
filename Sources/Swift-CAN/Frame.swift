@@ -6,16 +6,16 @@ public extension CAN {
     struct Frame {
 
         /// The sender or receiver arbitration id. Arbitration ids can be 11-bit or 29-bit.
-        let id: CAN.ArbitrationId
+        public let id: CAN.ArbitrationId
         /// Data Length Code
-        let dlc: Int
+        public let dlc: Int
         /// Data bytes
-        let data: [UInt8]
+        public let data: [UInt8]
         /// Receiving timestamp. Not used when sending frames.
-        let timestamp: Double
+        public let timestamp: Double
 
-        /// Create padded CAN frame from data. DLC is hardcoded to 8.
-        init(id: UInt32, padded data: [UInt8], pad: UInt8 = 0xAA) {
+        /// Create a padded CAN frame from data. DLC is hardcoded to 8.
+        public init(id: UInt32, padded data: [UInt8], pad: UInt8 = 0xAA) {
             self.id = id
             var data = data
             while data.count < 8 { data.append(pad) }
@@ -24,8 +24,8 @@ public extension CAN {
             self.timestamp = 0
         }
 
-        /// Create unpadded CAN frame from data. DLC is taken from length of data.
-        init(id: UInt32, unpadded data: [UInt8]) {
+        /// Create an unpadded CAN frame from data. DLC is taken from length of data.
+        public init(id: UInt32, unpadded data: [UInt8]) {
             self.id = id
             self.dlc = data.count
             self.data = data
