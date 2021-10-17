@@ -7,3 +7,5 @@ public protocol _CANInterface {
     func read(timeout: Double) throws -> CAN.Frame
     func write(_ frame: CAN.Frame) throws
 }
+
+extension CAN { public typealias Interface = _CANInterface }
