@@ -1,9 +1,10 @@
 // This file is part of Swift-CAN. (C) Dr. Michael 'Mickey' Lauer <mickey@vanille-media.de>
+import Foundation
 
-public extension CAN {
+extension CAN {
 
     /// A CAN frame
-    struct Frame {
+    public struct Frame {
 
         /// The sender or receiver arbitration id. Arbitration ids can be 11-bit or 29-bit.
         public let id: CAN.ArbitrationId
@@ -39,5 +40,15 @@ public extension CAN {
             self.data = data
             self.timestamp = timestamp
         }
+    }
+}
+
+extension CAN.Frame: CustomStringConvertible {
+    
+    public var description: String {
+        let id = self.id > 0x7FF ? String(format: "%06X", self.id) : String(format: "%03X", self.id)
+        let dlc = "[\(self.dlc)]"
+        let data = self.data.map { String(format: "%02X", $0) }.joined(separator: " ")
+        return "\(id) \(dlc) \(data)"
     }
 }
