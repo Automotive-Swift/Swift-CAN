@@ -2,6 +2,7 @@
 
 public extension CAN {
 
+    /// The adressing unit. Allowed are 11-bit or 29-bit addresses.
     typealias ArbitrationId = UInt32
 
     /// Functional adresses when talking to all ECUs
