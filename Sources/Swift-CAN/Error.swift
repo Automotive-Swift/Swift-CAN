@@ -9,6 +9,8 @@ extension CAN {
         case interfaceNotFound
         /// The requested interface is not a CAN interface.
         case interfaceNotCan
+        /// The requested configuration (e.g., bitrate) could not be applied.
+        case configurationError
         /// Could not read from interface. Might be recoverable.
         case readError
         /// Could not write to interface. Might be recoverable.
