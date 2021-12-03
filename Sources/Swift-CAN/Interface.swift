@@ -1,9 +1,9 @@
 // This file is part of Swift-CAN. (C) Dr. Michael 'Mickey' Lauer <mickey@vanille-media.de>
 
-/// An CAN interface.
+/// A CAN interface.
 public protocol _CANInterface {
 
-    /// Open the interface with the chosen `baudrate`.
+    /// Open the interface with the chosen `bitrate`.
     func open(baudrate: Int) throws
     /// Close the interface.
     func close() throws

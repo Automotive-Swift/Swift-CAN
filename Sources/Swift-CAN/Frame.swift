@@ -3,7 +3,7 @@ import Foundation
 
 extension CAN {
 
-    /// A CAN frame
+    /// A CAN frame.
     public struct Frame {
 
         /// The sender or receiver arbitration id. Arbitration ids can be 11-bit or 29-bit.
@@ -15,7 +15,8 @@ extension CAN {
         /// Receiving timestamp. Not used when sending frames.
         public let timestamp: Double
 
-        /// Create a CAN frame
+        /// Create a CAN frame with the specified DLC (data length code) `dlc` and `data`.
+        /// While the DLC should match the data length, it is not a necessity.
         public init(id: UInt32, dlc: Int, unpadded data: [UInt8], timestamp: Double = 0) {
             self.id = id
             self.dlc = dlc
@@ -44,9 +45,11 @@ extension CAN {
 }
 
 extension CAN.Frame: CustomStringConvertible {
-    
+
+    /// Format a CAN frame in the usual `candump`-compatible style with header, DLC, and data.
+    /// Example: `7E0 [8] 11 22 33 44 55 66 77 88`
     public var description: String {
-        let id = self.id > 0x7FF ? String(format: "%06X", self.id) : String(format: "%03X", self.id)
+        let id = self.id > 0x7FF ? String(format: "%08X", self.id) : String(format: "%03X", self.id)
         let dlc = "[\(self.dlc)]"
         let data = self.data.map { String(format: "%02X", $0) }.joined(separator: " ")
         return "\(id) \(dlc) \(data)"

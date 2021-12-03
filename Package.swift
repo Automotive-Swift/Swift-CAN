@@ -1,6 +1,4 @@
 // swift-tools-version: 5.4
-// The swift-tools-version declares the minimum version of Swift required to build this package.
-
 import PackageDescription
 
 let package = Package(
@@ -8,7 +6,8 @@ let package = Package(
     products: [
         .library(
             name: "Swift-CAN",
-            targets: ["Swift-CAN"]),
+            targets: ["Swift-CAN"]
+        ),
     ],
     dependencies: [
     ],
@@ -19,6 +18,7 @@ let package = Package(
         ),
         .testTarget(
             name: "Swift-CANTests",
-            dependencies: ["Swift-CAN"]),
+            dependencies: ["Swift-CAN"]
+        ),
     ]
 )

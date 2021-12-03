@@ -1,7 +1,7 @@
 // This file is part of Swift-CAN. (C) Dr. Michael 'Mickey' Lauer <mickey@vanille-media.de>
 extension CAN {
 
-    /// Common errors when dealing with CAN interfaces
+    /// Common errors when dealing with CAN interfaces.
     public enum Error: Swift.Error {
         /// CAN is not supported on this platform.
         case canNotSupported
