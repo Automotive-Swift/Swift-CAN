@@ -1,12 +1,5 @@
 // This file is part of Swift-CAN. (C) Dr. Michael 'Mickey' Lauer <mickey@vanille-media.de>
 
-<<<<<<< HEAD
-/// A CAN interface.
-public protocol _CANInterface {
-
-    /// Open the interface with the chosen `bitrate`.
-    func open(baudrate: Int) throws
-=======
 /// A CANbus interface.
 public protocol _CANInterface {
 
@@ -24,7 +17,6 @@ public protocol _CANInterface {
 
     /// Open the interface with the chosen `bitrate`.
     func open(bitrate: Int) throws
->>>>>>> Interface: add a way to get metadata for the CAN interface
     /// Close the interface.
     func close() throws
     /// Read a CAN frame with a `timeout` in milliseconds.
