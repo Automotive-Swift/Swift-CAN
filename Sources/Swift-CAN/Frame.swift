@@ -55,3 +55,8 @@ extension CAN.Frame: CustomStringConvertible {
         return "\(id) \(dlc) \(data)"
     }
 }
+
+extension CAN.Frame {
+
+    var isBroadcast: Bool { self.id.isBroadcast }
+}
