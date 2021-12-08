@@ -58,5 +58,10 @@ extension CAN.Frame: CustomStringConvertible {
 
 extension CAN.Frame {
 
-    var isBroadcast: Bool { self.id.isBroadcast }
+    /// Returns true, if this frame has a broadcast address.
+    public var isBroadcast: Bool { self.id.isBroadcast }
+
+    /// Returns the originator for this frame.
+    /// NOTE: The result is only valid for OBD2 broadcast addressing.
+    public var originator: CAN.ArbitrationId { self.id < 0x800 ? self.id & ~0x08 : 0x18DA00F1 | ((self.id & 0xFF) << 8) }
 }
