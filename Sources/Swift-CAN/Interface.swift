@@ -27,3 +27,12 @@ public protocol _CANInterface {
 }
 
 extension CAN { public typealias Interface = _CANInterface }
+
+extension CAN.Interface {
+
+    var vendor: String { "Unknown Vendor" }
+    /// The model name.
+    var model: String { "Unknown Model" }
+    /// The serial number.
+    var serialNumber: String { "Unknown Serial Number" }
+}
