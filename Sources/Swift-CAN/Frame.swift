@@ -62,6 +62,19 @@ extension CAN.Frame {
     public var isBroadcast: Bool { self.id.isBroadcast }
 
     /// Returns the originator for this frame.
-    /// NOTE: The result is only valid for OBD2 broadcast addressing.
-    public var originator: CAN.ArbitrationId { self.id < 0x800 ? self.id & ~0x08 : 0x18DA00F1 | ((self.id & 0xFF) << 8) }
+    /// NOTE: The result is only valid for standard CAN/OBD2 addressing!
+    public var originator: CAN.ArbitrationId? {
+
+        guard !self.isBroadcast else { return nil }
+        if self.id < 0x800 {
+            return self.id ^ 0x08
+        } else {
+            let id0 = UInt8(self.id >> 24 & 0xFF)
+            let id1 = UInt8(self.id >> 16 & 0xFF)
+            let id2 = UInt8(self.id >> 08 & 0xFF)
+            let id3 = UInt8(self.id & 0xFF)
+            return UInt32(id0) << 24 | UInt32(id1) << 16 | UInt32(id3) << 8 | UInt32(id2)
+        }
+    }
 }
+

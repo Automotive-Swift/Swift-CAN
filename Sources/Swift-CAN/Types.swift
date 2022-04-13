@@ -17,5 +17,4 @@ public extension CAN.ArbitrationId {
 
     /// Returns `true`, if the sender is a CAN broadcast address.
     var isBroadcast: Bool { self == Self.Broadcast11 || self == Self.Broadcast29 }
-
 }
